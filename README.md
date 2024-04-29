@@ -1,3 +1,3 @@
 # Equipo (trabajo individual)
 
-- Isabela Bedoya Gaviria.
+- Isabela Bedoya Gaviria. CC. 1020106520. isabela.bedoya@udea.edu.co
