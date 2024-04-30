@@ -15,6 +15,7 @@ import apifestivos.apifestivos.core.interfaces.servicios.IFestivoServicio;
 @Service
 public class FestivoServicio implements IFestivoServicio{
     private IFestivoRepositorio repositorio;
+    private Calendar calendar = Calendar.getInstance();
 
     public FestivoServicio(IFestivoRepositorio repositorio) {
         this.repositorio = repositorio;
@@ -22,15 +23,13 @@ public class FestivoServicio implements IFestivoServicio{
 
     // Funciones auxiliares
 
-    public static Date agregarDias(Date date, int days) {
-        Calendar calendar = Calendar.getInstance();
+    public Date agregarDias(Date date, int days) {
         calendar.setTime(date);
         calendar.add(Calendar.DATE, days);
         return calendar.getTime();
     }
 
-    public static Date siguienteLunes(Date date) {
-        Calendar calendar = Calendar.getInstance();
+    public Date siguienteLunes(Date date) {
         calendar.setTime(date);
         if (calendar.get(Calendar.DAY_OF_WEEK) > Calendar.MONDAY) {
             date = agregarDias(date, 9 - calendar.get(Calendar.DAY_OF_WEEK));
@@ -40,14 +39,12 @@ public class FestivoServicio implements IFestivoServicio{
         return date;
     }
 
-    public static int dayofWeek(Date date) {
-        Calendar calendar = Calendar.getInstance();
+    public int dayofWeek(Date date) {
         calendar.setTime(date);
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
     
     private Date calcularFechaBasadaEnPascua(int year, int diasPascua) {
-        Calendar calendar = Calendar.getInstance();
         // Domingo de pascua
         int a = year % 19;
         int b = year % 4;
@@ -69,8 +66,7 @@ public class FestivoServicio implements IFestivoServicio{
         return calendar.getTime();
     }
 
-    public static Date festivosFijos(int year, int month, int day) {
-        Calendar calendar = Calendar.getInstance();
+    public Date festivosFijos(int year, int month, int day) {
         calendar.set(year, month - 1, day);
         return calendar.getTime();
     }
